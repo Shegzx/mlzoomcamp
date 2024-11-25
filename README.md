@@ -1,0 +1,3 @@
+This simple project focuses on predicting the exit status (churn) of customers based on relevant features, including credit score, activeness, geographic location, and other relevant customer attributes. The dataset includes customer profiles such as age, balance, tenure, and product usage details.
+
+Churn_Modelling.csv trained using 4 models. The objective is to build with the selected best model (XGBoost model) to predict whether a customer will churn (exit) and deploy it as a RESTful API using Flask. The entire deployment is containerized with Docker, ensuring reproducibility and scalability.
