@@ -165,8 +165,8 @@ print('###############')
 #Hyperparameter tuning
 
 param_grid = {
-    'max_depth': [3,5,7,10],
-    'eta': [0.05,0.1,0.3,0.5],
+    'max_depth': [3,5,7],    #range of parameters reduced due to  delay in model fitting...
+    'eta': [0.1,0.3,0.5],
     'min_child_weight': [3,5,7],
 }
 
@@ -175,7 +175,7 @@ xgb_tune_model = xgb.XGBClassifier(objective='binary:logistic')
 gs = GridSearchCV(xgb_tune_model, param_grid, cv=3, scoring='roc_auc', verbose=1)
 gs.fit(X_train,y_train)
 
-gs.best_params_
+#gs.best_params_
 
 gs.best_estimator_ #eta = 0.1, max_depth = 3, min_child_weight = 3
 
@@ -188,7 +188,6 @@ y_pred = model.predict_proba(X_test)[:,1]
 auc = roc_auc_score(y_test,y_pred)
 auc.round(3)
 
-
 """Model Deployment"""
 model.save_model(output_file)
 output_file
@@ -199,21 +198,3 @@ file_out.close()
 
 with open(output_file, 'wb') as file_out:
     pickle.dump((dv,model), file_out)
-
-data_train.iloc[10].to_dict()
-
-input_data = {
-    "rownumber": 9776,
-    "customerid": 15744041,
-    "surname": "Yobanna",
-    "creditscore": 780,
-    "geography": "France",
-    "gender": "Female",
-    "age": 26,
-    "tenure": 3,
-    "balance": 140356.7,
-    "numofproducts": 1,
-    "hascrcard": "Yes",
-    "isactivemember": "No",
-    "estimatedsalary": 117144.15
-}
