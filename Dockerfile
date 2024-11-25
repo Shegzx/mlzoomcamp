@@ -8,8 +8,8 @@ COPY Pipfile Pipfile.lock /app/
 
 RUN pipenv install --deploy --system
 
-COPY ["app.py", "model.bin", "./"]
+COPY ["predict.py", "model.bin", "./"]
 
 EXPOSE 8081
 
-ENTRYPOINT ["gunicorn", "--bind=0.0.0.0:8081", "app:app"]
+ENTRYPOINT ["gunicorn", "--bind=0.0.0.0:8081", "predict:app"]
